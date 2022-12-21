@@ -14,5 +14,7 @@
 * Navigation Component for Fragments
 * MVVM for presentation layer
 * Coroutines for async work
-* Dagger 2 for DI
+* Dagger 2 (Hilt) for DI
+* Glide for images loading
 * Material Components for styling UI components
+* JUnit for unit tests

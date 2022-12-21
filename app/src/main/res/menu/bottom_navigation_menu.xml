@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/libraryFragment"
+        android:icon="@drawable/ic_library"
+        android:enabled="true"
+        android:iconTint="@color/orange"
+        android:title="Тренировки" />
+    <item
+        android:id="@+id/calculatorFragment"
+        android:icon="@drawable/ic_calculator"
+        android:enabled="true"
+        android:iconTint="@color/orange"
+        android:title="Калькулятор" />
+</menu>

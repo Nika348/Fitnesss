@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".screens.library.LibraryFragment">
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/library"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/library"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:padding="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/favorites"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/favorite"
+        android:textColor="@color/orange"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/favorites_icon"
+        android:layout_width="30dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_no_favorite"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/favorites"
+        app:layout_constraintEnd_toStartOf="@id/favorites"
+        app:layout_constraintTop_toTopOf="@+id/favorites" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_library"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/library"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
