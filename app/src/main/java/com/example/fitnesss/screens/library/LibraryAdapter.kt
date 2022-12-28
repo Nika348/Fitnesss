@@ -8,7 +8,9 @@ import com.example.fitnesss.R
 import com.example.fitnesss.databinding.ItemLibraryBinding
 import com.example.fitnesss.models.library.Library
 
-class LibraryAdapter: RecyclerView.Adapter<LibraryAdapter.MyViewHolder>() {
+class LibraryAdapter(
+    private val onItemClick: (Library) -> Unit
+): RecyclerView.Adapter<LibraryAdapter.MyViewHolder>() {
 
 
     var listLibrary = listOf<Library>()
@@ -17,7 +19,8 @@ class LibraryAdapter: RecyclerView.Adapter<LibraryAdapter.MyViewHolder>() {
             notifyDataSetChanged()
         }
 
-    class MyViewHolder(private val binding: ItemLibraryBinding) :
+    //может иметь доступ к членам внешнего класса
+    inner class MyViewHolder(private val binding: ItemLibraryBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun populate(library: Library) {
@@ -27,6 +30,10 @@ class LibraryAdapter: RecyclerView.Adapter<LibraryAdapter.MyViewHolder>() {
                 .load(library.image_library)
                 .error(R.drawable.good_shape)
                 .into(binding.itemLibraryImage)
+
+            binding.root.setOnClickListener{
+                onItemClick.invoke(library)
+            }
         }
     }
 
@@ -38,7 +45,6 @@ class LibraryAdapter: RecyclerView.Adapter<LibraryAdapter.MyViewHolder>() {
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val content = listLibrary[position]
         holder.populate(content)
-
     }
 
     override fun getItemCount(): Int {

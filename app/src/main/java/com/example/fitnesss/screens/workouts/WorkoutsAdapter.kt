@@ -1,4 +1,57 @@
 package com.example.fitnesss.screens.workouts
 
-class WorkoutsAdapter {
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.fitnesss.R
+import com.example.fitnesss.databinding.ItemWorkoutsBinding
+import com.example.fitnesss.models.workouts.Workouts
+
+class WorkoutsAdapter(
+    private val onItemClick: (Workouts) -> Unit
+): RecyclerView.Adapter<WorkoutsAdapter.MyViewHolder>() {
+
+
+    var listWorkouts = listOf<Workouts>()
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
+
+
+    //может иметь доступ к членам внешнего класса
+    inner class MyViewHolder(private val binding: ItemWorkoutsBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun populate(workouts: Workouts) {
+            binding.textExercise.text = workouts.text_exercise
+            binding.calories.text = workouts.calories
+
+            Glide.with(binding.root.context)
+                .load(workouts.image_exercise)
+                .centerCrop()
+                .error(R.drawable.good_shape)
+                .into(binding.imageExercise)
+
+            binding.root.setOnClickListener{
+                onItemClick.invoke(workouts)
+            }
+        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+        val binding = ItemWorkoutsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return MyViewHolder(binding)
+    }
+
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        val content = listWorkouts[position]
+        holder.populate(content)
+    }
+
+    override fun getItemCount(): Int {
+        return listWorkouts.size
+    }
+
 }

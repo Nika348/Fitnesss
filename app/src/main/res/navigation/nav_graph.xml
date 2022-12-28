@@ -11,83 +11,14 @@
         android:label="fragment_library"
         tools:layout="@layout/fragment_library" >
         <action
-            android:id="@+id/action_libraryFragment_to_loseWeightFragment"
-            app:destination="@id/loseWeightFragment" />
-        <action
-            android:id="@+id/action_libraryFragment_to_goodShapeFragment"
-            app:destination="@id/goodShapeFragment" />
-        <action
-            android:id="@+id/action_libraryFragment_to_gainWeightFragment"
-            app:destination="@id/gainWeightFragment" />
-        <action
-            android:id="@+id/action_libraryFragment_to_highIntensityFragment"
-            app:destination="@id/highIntensityFragment" />
-        <action
             android:id="@+id/action_libraryFragment_to_calculatorFragment"
             app:destination="@id/calculatorFragment" />
         <action
             android:id="@+id/action_libraryFragment_to_favoriteFragment"
             app:destination="@id/favoriteFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/loseWeightFragment"
-        android:name="com.example.fitnesss.screens.workouts.LoseWeightFragment"
-        android:label="fragment_lose_weight"
-        tools:layout="@layout/fragment_lose_weight" >
         <action
-            android:id="@+id/action_loseWeightFragment_to_libraryFragment"
-            app:destination="@id/libraryFragment" />
-        <action
-            android:id="@+id/action_loseWeightFragment_to_calculatorFragment"
-            app:destination="@id/calculatorFragment" />
-        <action
-            android:id="@+id/action_loseWeightFragment_to_detailFragment"
-            app:destination="@id/detailFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/goodShapeFragment"
-        android:name="com.example.fitnesss.screens.workouts.GoodShapeFragment"
-        android:label="fragment_good_shape"
-        tools:layout="@layout/fragment_good_shape" >
-        <action
-            android:id="@+id/action_goodShapeFragment_to_libraryFragment"
-            app:destination="@id/libraryFragment" />
-        <action
-            android:id="@+id/action_goodShapeFragment_to_calculatorFragment"
-            app:destination="@id/calculatorFragment" />
-        <action
-            android:id="@+id/action_goodShapeFragment_to_detailFragment"
-            app:destination="@id/detailFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/gainWeightFragment"
-        android:name="com.example.fitnesss.screens.workouts.GainWeightFragment"
-        android:label="fragment_gain_weight"
-        tools:layout="@layout/fragment_gain_weight" >
-        <action
-            android:id="@+id/action_gainWeightFragment_to_libraryFragment"
-            app:destination="@id/libraryFragment" />
-        <action
-            android:id="@+id/action_gainWeightFragment_to_calculatorFragment"
-            app:destination="@id/calculatorFragment" />
-        <action
-            android:id="@+id/action_gainWeightFragment_to_detailFragment"
-            app:destination="@id/detailFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/highIntensityFragment"
-        android:name="com.example.fitnesss.screens.workouts.HighIntensityFragment"
-        android:label="fragment_high_intensity"
-        tools:layout="@layout/fragment_high_intensity" >
-        <action
-            android:id="@+id/action_highIntensityFragment_to_libraryFragment"
-            app:destination="@id/libraryFragment" />
-        <action
-            android:id="@+id/action_highIntensityFragment_to_calculatorFragment"
-            app:destination="@id/calculatorFragment" />
-        <action
-            android:id="@+id/action_highIntensityFragment_to_detailFragment"
-            app:destination="@id/detailFragment" />
+            android:id="@+id/action_libraryFragment_to_workoutsFragment"
+            app:destination="@id/workoutsFragment" />
     </fragment>
     <fragment
         android:id="@+id/calculatorFragment"
@@ -104,17 +35,10 @@
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail" >
         <action
-            android:id="@+id/action_detailFragment_to_loseWeightFragment"
-            app:destination="@id/loseWeightFragment" />
-        <action
-            android:id="@+id/action_detailFragment_to_goodShapeFragment"
-            app:destination="@id/goodShapeFragment" />
-        <action
-            android:id="@+id/action_detailFragment_to_gainWeightFragment"
-            app:destination="@id/gainWeightFragment" />
-        <action
-            android:id="@+id/action_detailFragment_to_highIntensityFragment"
-            app:destination="@id/highIntensityFragment" />
+            android:id="@+id/action_detailFragment_to_workoutsFragment"
+            app:destination="@id/workoutsFragment" />
+        <argument android:name="workoutsId"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
@@ -127,5 +51,20 @@
         <action
             android:id="@+id/action_favoriteFragment_to_libraryFragment2"
             app:destination="@id/libraryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/workoutsFragment"
+        android:name="com.example.fitnesss.screens.workouts.WorkoutsFragment"
+        android:label="fragment_workouts"
+        tools:layout="@layout/fragment_workouts" >
+        <action
+            android:id="@+id/action_workoutsFragment_to_libraryFragment"
+            app:destination="@id/libraryFragment" />
+        <action
+            android:id="@+id/action_workoutsFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+        <argument
+            android:name="libraryId"
+            app:argType="integer" />
     </fragment>
 </navigation>

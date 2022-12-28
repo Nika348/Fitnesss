@@ -1,29 +1,29 @@
-package com.example.fitnesss.screens.detail
+package com.example.fitnesss.screens.workouts
 
 import androidx.lifecycle.ViewModel
-import com.example.fitnesss.models.detail.Detail
 import com.example.fitnesss.models.library.LibraryRepository
+import com.example.fitnesss.models.workouts.Workouts
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-class DetailViewModel @AssistedInject constructor(
+
+class WorkoutsViewModel @AssistedInject constructor(
     private val repository: LibraryRepository,
-    @Assisted("workoutsId") private val workoutsId: Int
+    @Assisted("libraryId") private val libraryId: Int
 ): ViewModel() {
 
-    private val _data = MutableStateFlow<Detail?>(null)
+    private val _data = MutableStateFlow<List<Workouts>>(emptyList())
     val data = _data.asStateFlow()
 
     init {
-        _data.tryEmit(repository.getDetail(workoutsId))
+        _data.tryEmit(repository.getWorkouts(libraryId))
     }
 
     @AssistedFactory
     interface Factory{
-        fun create(@Assisted("workoutsId") workoutsId: Int): DetailViewModel
+        fun create(@Assisted("libraryId") libraryId: Int): WorkoutsViewModel
     }
 }
