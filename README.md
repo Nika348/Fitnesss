@@ -3,8 +3,9 @@
 *Fitnesss* - helper which can orginize fitness training at home. Workouts for different levels of training and the accurate BMI calculator
 
 # Screens
-* Library with choice of training level
-* List of workouts for a certain level
+* Library with choice of training categories
+* List of workouts for a certain category
+* Workout details
 * Favorites sports exercises
 * BMI calculator
 
