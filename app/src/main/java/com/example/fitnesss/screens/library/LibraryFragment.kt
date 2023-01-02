@@ -8,11 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.fitnesss.R
 import com.example.fitnesss.databinding.FragmentLibraryBinding
-import com.example.fitnesss.screens.library.LibraryFragmentViewModel_Factory.create
-import com.example.fitnesss.screens.workouts.WorkoutsViewModel
-import com.example.fitnesss.utils.viewModelCreator
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class LibraryFragment : Fragment(R.layout.fragment_library) {
@@ -29,20 +25,26 @@ class LibraryFragment : Fragment(R.layout.fragment_library) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentLibraryBinding.bind(view)
         setupView()
+        setupListener()
     }
 
     private fun setupView() {
         binding.rvLibrary.adapter = adapter
         lifecycleScope.launchWhenCreated {
-            viewModel.data.collect {
+            viewModel.listLibraryFlow.collect {
                 adapter.listLibrary = it
             }
         }
     }
 
+    private fun setupListener() {
+        binding.favorites.setOnClickListener {
+            findNavController().navigate(R.id.action_libraryFragment_to_favoriteFragment)
+        }
+    }
+
     private fun initAdapter(): LibraryAdapter {
         return LibraryAdapter{
-
             val direction = LibraryFragmentDirections.actionLibraryFragmentToWorkoutsFragment(it.id)
             findNavController().navigate(direction)
         }

@@ -42,7 +42,7 @@ class WorkoutsFragment : Fragment(R.layout.fragment_workouts) {
 
     private fun setupObservers() {
         lifecycleScope.launchWhenCreated {
-            viewModel.data.collect{
+            viewModel.listWorkoutsFlow.collect{
                 adapter.listWorkouts = it
             }
         }

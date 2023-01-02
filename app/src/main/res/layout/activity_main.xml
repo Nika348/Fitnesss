@@ -30,6 +30,8 @@
         android:layout_height="56dp"
         app:itemRippleColor="@color/orange"
         android:gravity="bottom"
+        app:itemIconTint="@color/bottom_icon_color"
+        app:itemTextColor="@color/bottom_icon_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/bottom_navigation_menu">
 

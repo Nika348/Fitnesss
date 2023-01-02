@@ -4,12 +4,10 @@
         android:id="@+id/libraryFragment"
         android:icon="@drawable/ic_library"
         android:enabled="true"
-        android:iconTint="@color/orange"
-        android:title="Тренировки" />
+        android:title="@string/workouts" />
     <item
         android:id="@+id/calculatorFragment"
         android:icon="@drawable/ic_calculator"
         android:enabled="true"
-        android:iconTint="@color/orange"
-        android:title="Калькулятор" />
+        android:title="@string/calculator" />
 </menu>

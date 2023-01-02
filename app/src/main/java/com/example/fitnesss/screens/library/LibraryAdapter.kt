@@ -24,11 +24,12 @@ class LibraryAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         fun populate(library: Library) {
-            binding.itemLibraryText.text = library.text_library
+            binding.itemLibraryText.text = library.textLibrary
 
             Glide.with(binding.root.context)
-                .load(library.image_library)
+                .load(library.imageLibrary)
                 .error(R.drawable.good_shape)
+                .placeholder(R.drawable.placeholder)
                 .into(binding.itemLibraryImage)
 
             binding.root.setOnClickListener{

@@ -10,8 +10,9 @@
 
     <ImageView
         android:id="@+id/image_exercise_detail"
-        android:layout_width="200dp"
-        android:layout_height="150dp"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars" />
@@ -21,43 +22,46 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
+        android:padding="20dp"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/image_exercise_detail"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/image_exercise_detail"
-        app:layout_constraintTop_toTopOf="@+id/image_exercise_detail" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/repeat_exercise" />
 
     <TextView
         android:id="@+id/exercise"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="8dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
         android:textColor="@color/white"
         android:text="Exercise"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image_exercise_detail" />
 
     <TextView
-        android:id="@+id/time_text"
+        android:id="@+id/repeat_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:textColor="@color/white"
-        android:text="Bремя"
+        android:text="Повтор"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/exercise" />
 
     <TextView
-        android:id="@+id/time_exercise"
+        android:id="@+id/repeat_exercise"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:textColor="@color/white"
-        android:text="05:00"
-        app:layout_constraintEnd_toEndOf="@+id/time_text"
-        app:layout_constraintStart_toStartOf="@+id/time_text"
-        app:layout_constraintTop_toBottomOf="@+id/time_text" />
+        android:text="20"
+        app:layout_constraintEnd_toEndOf="@+id/repeat_text"
+        app:layout_constraintStart_toStartOf="@+id/repeat_text"
+        app:layout_constraintTop_toBottomOf="@+id/repeat_text" />
 
     <TextView
         android:id="@+id/relaxation_text"
@@ -66,9 +70,9 @@
         android:layout_marginStart="16dp"
         android:text="Отдых"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/time_text"
-        app:layout_constraintStart_toEndOf="@id/time_text"
-        app:layout_constraintTop_toTopOf="@+id/time_text" />
+        app:layout_constraintBottom_toBottomOf="@+id/repeat_text"
+        app:layout_constraintStart_toEndOf="@id/repeat_text"
+        app:layout_constraintTop_toTopOf="@+id/repeat_text" />
 
     <TextView
         android:id="@+id/time_relaxation"

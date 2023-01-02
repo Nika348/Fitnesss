@@ -1,0 +1,136 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 2,
+    "identityHash": "ff0ee923fa332d8206dfc78d09caef9c",
+    "entities": [
+      {
+        "tableName": "library",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`library_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `image_library` TEXT NOT NULL, `text_library` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "library_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "imageLibrary",
+            "columnName": "image_library",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "textLibrary",
+            "columnName": "text_library",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "library_id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "workouts",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`workout_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `image_exercise` TEXT NOT NULL, `name_exercise` TEXT NOT NULL, `calories` TEXT NOT NULL, `description_exercise` TEXT NOT NULL, `repeat_exercise` TEXT NOT NULL, `time_relaxation` TEXT NOT NULL, `library_id_key` INTEGER NOT NULL, `is_favorite` INTEGER NOT NULL, FOREIGN KEY(`library_id_key`) REFERENCES `library`(`library_id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "workout_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "imageExercise",
+            "columnName": "image_exercise",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nameExercise",
+            "columnName": "name_exercise",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "calories",
+            "columnName": "calories",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "descriptionExercise",
+            "columnName": "description_exercise",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "repeatExercise",
+            "columnName": "repeat_exercise",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "timeRelaxation",
+            "columnName": "time_relaxation",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "libraryId",
+            "columnName": "library_id_key",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isFavorite",
+            "columnName": "is_favorite",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "workout_id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_workouts_library_id_key",
+            "unique": false,
+            "columnNames": [
+              "library_id_key"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_workouts_library_id_key` ON `${TABLE_NAME}` (`library_id_key`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "library",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "library_id_key"
+            ],
+            "referencedColumns": [
+              "library_id"
+            ]
+          }
+        ]
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'ff0ee923fa332d8206dfc78d09caef9c')"
+    ]
+  }
+}

@@ -2,6 +2,7 @@ package com.example.fitnesss
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -30,5 +31,6 @@ class MainActivity : AppCompatActivity() {
             val navController: NavController = navHostFragment.navController
 
             navView.setupWithNavController(navController)
+            binding.bottomNav.setBackgroundColor(ContextCompat.getColor(this, R.color.black))
         }
 }

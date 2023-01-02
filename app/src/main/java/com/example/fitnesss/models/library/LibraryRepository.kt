@@ -5,7 +5,10 @@ import com.example.fitnesss.models.workouts.Workouts
 
 interface LibraryRepository {
 
-    fun getLibrary(): List<Library>
-    fun getWorkouts(libraryId: Int): List<Workouts>
-    fun getDetail(workoutsId: Int): Detail
+    suspend fun getLibrary(): List<Library>
+    suspend fun getWorkouts(libraryId: Int): List<Workouts>
+    suspend fun getDetail(workoutId: Int): Detail
+
+    suspend fun updateFavoriteStatus(workoutId: Int, isFavorite: Boolean)
+    suspend fun getFavoritesWorkout(): List<Workouts>
 }

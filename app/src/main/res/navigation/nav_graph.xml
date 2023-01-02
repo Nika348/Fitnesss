@@ -24,19 +24,12 @@
         android:id="@+id/calculatorFragment"
         android:name="com.example.fitnesss.screens.CalculatorFragment"
         android:label="fragment_calculator"
-        tools:layout="@layout/fragment_calculator" >
-        <action
-            android:id="@+id/action_calculatorFragment_to_libraryFragment"
-            app:destination="@id/libraryFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_calculator" />
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.example.fitnesss.screens.detail.DetailFragment"
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail" >
-        <action
-            android:id="@+id/action_detailFragment_to_workoutsFragment"
-            app:destination="@id/workoutsFragment" />
         <argument android:name="workoutsId"
             app:argType="integer" />
     </fragment>
@@ -46,20 +39,14 @@
         android:label="fragment_favorite"
         tools:layout="@layout/fragment_favorite" >
         <action
-            android:id="@+id/action_favoriteFragment_to_libraryFragment"
-            app:destination="@id/libraryFragment" />
-        <action
-            android:id="@+id/action_favoriteFragment_to_libraryFragment2"
-            app:destination="@id/libraryFragment" />
+            android:id="@+id/action_favoriteFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
     </fragment>
     <fragment
         android:id="@+id/workoutsFragment"
         android:name="com.example.fitnesss.screens.workouts.WorkoutsFragment"
         android:label="fragment_workouts"
         tools:layout="@layout/fragment_workouts" >
-        <action
-            android:id="@+id/action_workoutsFragment_to_libraryFragment"
-            app:destination="@id/libraryFragment" />
         <action
             android:id="@+id/action_workoutsFragment_to_detailFragment"
             app:destination="@id/detailFragment" />

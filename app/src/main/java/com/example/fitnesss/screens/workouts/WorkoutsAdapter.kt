@@ -25,13 +25,14 @@ class WorkoutsAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         fun populate(workouts: Workouts) {
-            binding.textExercise.text = workouts.text_exercise
+            binding.textExercise.text = workouts.nameExercise
             binding.calories.text = workouts.calories
 
             Glide.with(binding.root.context)
-                .load(workouts.image_exercise)
+                .load(workouts.imageExercise)
                 .centerCrop()
                 .error(R.drawable.good_shape)
+                .placeholder(R.drawable.placeholder)
                 .into(binding.imageExercise)
 
             binding.root.setOnClickListener{
