@@ -2,6 +2,8 @@ package com.example.fitnesss.screens.favorite
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.fitnesss.R
@@ -10,15 +12,18 @@ import com.example.fitnesss.models.workouts.Workouts
 
 class FavoriteAdapter(
     private val onItemClick: (Workouts) -> Unit
-) : RecyclerView.Adapter<FavoriteAdapter.MyViewHolder>() {
+) : ListAdapter<Workouts, FavoriteAdapter.MyViewHolder>(FavoriteDiffUtilCallback()) {
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+        val binding =
+            ItemWorkoutsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return MyViewHolder(binding)
+    }
 
-    var listFavorite = emptyList<Workouts>()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
-
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        val content = getItem(position)
+        holder.populate(content)
+    }
 
     //может иметь доступ к членам внешнего класса
     inner class MyViewHolder(private val binding: ItemWorkoutsBinding) :
@@ -41,19 +46,13 @@ class FavoriteAdapter(
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val binding =
-            ItemWorkoutsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return MyViewHolder(binding)
-    }
+    class FavoriteDiffUtilCallback: DiffUtil.ItemCallback<Workouts>() {
+        override fun areItemsTheSame(oldItem: Workouts, newItem: Workouts): Boolean {
+            return oldItem.id == newItem.id
+        }
 
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val content = listFavorite[position]
-        holder.populate(content)
+        override fun areContentsTheSame(oldItem: Workouts, newItem: Workouts): Boolean {
+            return oldItem == newItem
+        }
     }
-
-    override fun getItemCount(): Int {
-        return listFavorite.size
-    }
-
 }

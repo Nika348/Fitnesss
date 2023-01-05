@@ -37,7 +37,7 @@ class FavoriteFragment : Fragment(R.layout.fragment_favorite) {
     private fun setupObservers(){
         lifecycleScope.launchWhenCreated {
             viewModel.listFavoriteFlow.collect{
-                adapter.listFavorite = it
+                adapter.submitList(it)
             }
         }
     }

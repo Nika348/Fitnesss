@@ -29,10 +29,23 @@ android {
 
     buildFeatures.viewBinding = true
 
+    def BASE_URL = "BASE_URL"
+    def BASE_URL_VALUE = "\"https://fitness-calculator.p.rapidapi.com/\""
+    def API_KEY = "API_KEY"
+    def API_KEY_VALUE = "\"e14f1e4840msh770924eeaf37c43p10ff4bjsne65ed6ac56b9\""
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", BASE_URL, BASE_URL_VALUE
+            buildConfigField "String", API_KEY, API_KEY_VALUE
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", BASE_URL, BASE_URL_VALUE
+            buildConfigField "String", API_KEY, API_KEY_VALUE
         }
     }
     compileOptions {
@@ -72,5 +85,9 @@ dependencies {
 
     implementation 'com.google.dagger:hilt-android:2.44.2'
     kapt 'com.google.dagger:hilt-compiler:2.44.2'
+
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.10'
 
 }

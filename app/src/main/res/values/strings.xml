@@ -7,4 +7,15 @@
     <string name="exercise">Exercise</string>
     <string name="calculator">Калькулятор</string>
     <string name="workouts">Тренировки</string>
+    <string name="input_age">Введите Ваш возраст</string>
+    <string name="input_weight">Введите Ваш вес (кг)</string>
+    <string name="input_height">Введите Ваш рост (см)</string>
+    <string name="choose_gender">Выберите Ваш пол</string>
+    <string name="calculate">Рассчитать</string>
+    <string name="ideal_weight_result">Идеальный вес:</string>
+    <string name="bmi_result">Индекс массы тела:</string>
+    <string name="input_error">Поле пустое</string>
+    <string name="network_error">Проверьте соединение с интернетом</string>
+    <string name="unknown_error">Неизвестная ошибка</string>
+
 </resources>

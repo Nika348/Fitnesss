@@ -8,7 +8,7 @@ import com.example.fitnesss.data.room.entity.WorkoutsEntity
 import com.example.fitnesss.data.room.tuples.DetailTuple
 import com.example.fitnesss.data.room.tuples.UpdateFavoriteTuple
 import com.example.fitnesss.data.room.tuples.WorkoutsTuple
-import com.example.fitnesss.models.workouts.Workouts
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface WorkoutsDao {
@@ -35,5 +35,5 @@ interface WorkoutsDao {
 
     @Query("SELECT workout_id, image_exercise, name_exercise, calories " +
             "FROM workouts WHERE is_favorite = 1")
-    suspend fun getFavoritesWorkouts(): List<WorkoutsTuple>
+    fun getFavoritesWorkouts(): Flow<List<WorkoutsTuple>>
 }

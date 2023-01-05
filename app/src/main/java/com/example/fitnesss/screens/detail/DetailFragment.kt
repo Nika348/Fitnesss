@@ -18,7 +18,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
 
     private var _binding: FragmentDetailBinding? = null
     private val binding
-        get() = _binding ?: throw NullPointerException("FragmentLibraryBinding is null")
+        get() = _binding ?: throw NullPointerException("FragmentDetailBinding is null")
 
     private val args by navArgs<DetailFragmentArgs>()
 

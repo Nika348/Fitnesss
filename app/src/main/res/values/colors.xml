@@ -8,5 +8,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="orange">#FF6A00</color>
-    <color name="icon_color">#8F8F8F</color>
+    <color name="grey01">#8F8F8F</color>
+    <color name="grey02">#4D8F8F8F</color>
+    <color name="black_light">#121212</color>
+    <color name="orange_light">#FFCA86</color>
+    <color name="grey03">#212121</color>
+    <color name="red">#FF3B30</color>
 </resources>

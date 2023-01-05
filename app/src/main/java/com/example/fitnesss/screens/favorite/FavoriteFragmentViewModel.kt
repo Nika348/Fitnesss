@@ -7,7 +7,9 @@ import com.example.fitnesss.models.workouts.Workouts
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -16,17 +18,7 @@ class FavoriteFragmentViewModel @Inject constructor(
     private val repository: LibraryRepository
 ): ViewModel() {
 
-    private val _listFavoriteFlow = MutableStateFlow<List<Workouts>>(emptyList())
-    val listFavoriteFlow = _listFavoriteFlow.asStateFlow()
+    val listFavoriteFlow = repository.favoritesWorkout.stateIn(viewModelScope, SharingStarted.Eagerly, emptyList())
 
-    init {
-        getFavorite()
-    }
-
-    private fun getFavorite(){
-        viewModelScope.launch(Dispatchers.IO) {
-            _listFavoriteFlow.tryEmit(repository.getFavoritesWorkout())
-        }
-    }
 
 }
