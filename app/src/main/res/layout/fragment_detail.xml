@@ -4,17 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@color/black_light"
     tools:context=".screens.detail.DetailFragment">
 
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar_detail"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        app:title="Упражнение"
+        app:titleTextColor="@color/white"
+        app:titleCentered="true"
+        android:background="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_back"
+        android:paddingStart="8dp"/>
 
     <ImageView
         android:id="@+id/image_exercise_detail"
         android:layout_width="match_parent"
         android:layout_height="300dp"
+        android:layout_margin="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_detail"
         tools:src="@tools:sample/avatars" />
 
     <TextView
@@ -34,10 +48,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="8dp"
-        android:textSize="20sp"
+        android:textSize="28sp"
         android:textStyle="bold"
         android:textColor="@color/white"
         android:text="Exercise"
+        android:layout_marginStart="24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image_exercise_detail" />
 
@@ -45,8 +60,9 @@
         android:id="@+id/repeat_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
+        android:textSize="16sp"
         android:textColor="@color/white"
         android:text="Повтор"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,6 +74,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:textColor="@color/white"
+        android:textSize="16sp"
         android:text="20"
         app:layout_constraintEnd_toEndOf="@+id/repeat_text"
         app:layout_constraintStart_toStartOf="@+id/repeat_text"
@@ -69,6 +86,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="Отдых"
+        android:textSize="16sp"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/repeat_text"
         app:layout_constraintStart_toEndOf="@id/repeat_text"
@@ -80,6 +98,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="02:00"
+        android:textSize="16sp"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/relaxation_text"
         app:layout_constraintStart_toStartOf="@+id/relaxation_text"

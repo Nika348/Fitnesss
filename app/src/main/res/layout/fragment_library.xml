@@ -4,43 +4,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@color/black_light"
     tools:context=".screens.library.LibraryFragment">
 
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/library"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/library"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        android:padding="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/favorites"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/favorite"
-        android:textColor="@color/orange"
-        android:textSize="20sp"
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar_library"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/black"
+        app:title="@string/library"
+        app:titleTextColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp">
 
-    <ImageView
-        android:id="@+id/favorites_icon"
-        android:layout_width="30dp"
-        android:layout_height="40dp"
-        android:src="@drawable/ic_no_favorite"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintBottom_toBottomOf="@id/favorites"
-        app:layout_constraintEnd_toStartOf="@id/favorites"
-        app:layout_constraintTop_toTopOf="@+id/favorites" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/favorites"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="8dp"
+            android:text="@string/favorite"
+            android:textAllCaps="false"
+            android:layout_gravity="center_vertical|end"
+            android:background="@color/black"
+            android:textColor="@color/orange"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:drawableStart="@drawable/ic_no_favorite"/>
+
+    </com.google.android.material.appbar.MaterialToolbar>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_library"
@@ -48,7 +43,7 @@
         android:layout_height="0dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/library" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_library" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -33,11 +33,18 @@ class WorkoutsFragment : Fragment(R.layout.fragment_workouts) {
         _binding = FragmentWorkoutsBinding.bind(view)
         binding.rvWorkouts.adapter = adapter
         setupObservers()
+        setupListeners()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun setupListeners() {
+        binding.toolbarWorkouts.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
     }
 
     private fun setupObservers() {

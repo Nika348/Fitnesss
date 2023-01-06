@@ -23,7 +23,7 @@ class LibraryFragmentViewModel @Inject constructor(
         getLibrary()
     }
 
-    private fun getLibrary(){
+    fun getLibrary(){
         viewModelScope.launch(Dispatchers.IO) {
             _listLibraryFlow.tryEmit(repository.getLibrary())
         }

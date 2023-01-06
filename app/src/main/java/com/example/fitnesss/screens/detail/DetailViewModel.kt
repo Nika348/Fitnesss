@@ -27,7 +27,7 @@ class DetailViewModel @AssistedInject constructor(
         getDetail()
     }
 
-    private fun getDetail(){
+    fun getDetail(){
         viewModelScope.launch(Dispatchers.IO) {
             val detail = repository.getDetail(workoutsId)
             _isFavoriteFlow.tryEmit(detail.isFavorite)

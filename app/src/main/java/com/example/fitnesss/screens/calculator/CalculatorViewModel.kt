@@ -31,6 +31,18 @@ class CalculatorViewModel @Inject constructor(
     private val _showContentFlow = MutableStateFlow(false)
     val showContentFlow = _showContentFlow.asStateFlow()
 
+    private val _editAgeStateFlow = MutableStateFlow<EditAgeState>(EditAgeState.ValidState)
+    val editAgeStateFlow = _editAgeStateFlow.asStateFlow()
+
+    private val _editWeightStateFlow = MutableStateFlow<EditWeightState>(EditWeightState.ValidState)
+    val editWeightStateFlow = _editWeightStateFlow.asStateFlow()
+
+    private val _editHeightStateFlow = MutableStateFlow<EditHeightState>(EditHeightState.ValidState)
+    val editHeightStateFlow = _editHeightStateFlow.asStateFlow()
+
+    private val _editGenderStateFlow = MutableStateFlow<EditGenderState>(EditGenderState.ValidState)
+    val editGenderStateFlow = _editGenderStateFlow.asStateFlow()
+
     private val _commandFlow = MutableSharedFlow<Commands>(
         replay = 0,
         extraBufferCapacity = 10,
@@ -86,7 +98,7 @@ class CalculatorViewModel @Inject constructor(
             indexJob.await()
             idealWeightJob.await()
             _isLoadingFlow.tryEmit(false)
-            if(indexFlow.value != null && idealWeightFlow.value != null) {
+            if (indexFlow.value != null && idealWeightFlow.value != null) {
                 _showContentFlow.tryEmit(true)
             }
         }
@@ -104,6 +116,55 @@ class CalculatorViewModel @Inject constructor(
                 robinson = idealWeightModel.robinson
             )
         } else null
+    }
+
+    fun onEditAgeFocusListener(hasFocus: Boolean, age: String) {
+        if (hasFocus) {
+            _editAgeStateFlow.tryEmit(EditAgeState.ValidState)
+        } else {
+            if (age.isBlank()) {
+                _editAgeStateFlow.tryEmit(EditAgeState.EmptyFieldError(R.string.input_error))
+            }
+            else if (age.toInt() !in 0..80){
+                _editAgeStateFlow.tryEmit(EditAgeState.DiapasonError(R.string.age_error))
+            }
+        }
+    }
+
+    fun onEditWeightFocusListener(hasFocus: Boolean, age: String) {
+        if (hasFocus) {
+            _editWeightStateFlow.tryEmit(EditWeightState.ValidState)
+        } else {
+            if (age.isBlank()) {
+                _editWeightStateFlow.tryEmit(EditWeightState.EmptyFieldError(R.string.input_error))
+            }
+            else if (age.toInt() !in 40..160){
+                _editWeightStateFlow.tryEmit(EditWeightState.DiapasonError(R.string.weight_error))
+            }
+        }
+    }
+
+    fun onEditHeightFocusListener(hasFocus: Boolean, age: String) {
+        if (hasFocus) {
+            _editHeightStateFlow.tryEmit(EditHeightState.ValidState)
+        } else {
+            if (age.isBlank()) {
+                _editHeightStateFlow.tryEmit(EditHeightState.EmptyFieldError(R.string.input_error))
+            }
+            else if (age.toInt() !in 130..230){
+                _editHeightStateFlow.tryEmit(EditHeightState.DiapasonError(R.string.height_error))
+            }
+        }
+    }
+
+    fun onEditGenderFocusListener(hasFocus: Boolean, age: String) {
+        if (hasFocus) {
+            _editGenderStateFlow.tryEmit(EditGenderState.ValidState)
+        } else {
+            if (age.isBlank()) {
+                _editGenderStateFlow.tryEmit(EditGenderState.EmptyFieldError(R.string.input_error))
+            }
+        }
     }
 
     data class IndexAndWeightModel(
@@ -131,4 +192,26 @@ class CalculatorViewModel @Inject constructor(
         class ShowBottomUnknown(@StringRes val message: Int) : Commands
     }
 
+    sealed interface EditAgeState {
+        class EmptyFieldError(@StringRes val message: Int) : EditAgeState
+        class DiapasonError(@StringRes val message: Int) : EditAgeState
+        object ValidState : EditAgeState
+    }
+
+    sealed interface EditWeightState {
+        class EmptyFieldError(@StringRes val message: Int) : EditWeightState
+        class DiapasonError(@StringRes val message: Int) : EditWeightState
+        object ValidState : EditWeightState
+    }
+
+    sealed interface EditHeightState {
+        class EmptyFieldError(@StringRes val message: Int) : EditHeightState
+        class DiapasonError(@StringRes val message: Int) : EditHeightState
+        object ValidState : EditHeightState
+    }
+
+    sealed interface EditGenderState {
+        class EmptyFieldError(@StringRes val message: Int) : EditGenderState
+        object ValidState : EditGenderState
+    }
 }

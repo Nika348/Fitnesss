@@ -1,5 +1,6 @@
 package com.example.fitnesss
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.content.ContextCompat
@@ -15,10 +16,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-        private lateinit var navController: NavController
         lateinit var binding: ActivityMainBinding
-        private lateinit var bottomNav: BottomNavigationView
-
 
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
@@ -31,6 +29,5 @@ class MainActivity : AppCompatActivity() {
             val navController: NavController = navHostFragment.navController
 
             navView.setupWithNavController(navController)
-            binding.bottomNav.setBackgroundColor(ContextCompat.getColor(this, R.color.black))
         }
 }

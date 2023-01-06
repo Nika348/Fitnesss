@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.fitnesss.R
@@ -33,6 +34,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         setupObservers()
         setupListeners()
     }
+
 
     private fun setupObservers() {
         lifecycleScope.launchWhenCreated {
@@ -72,6 +74,9 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     private fun setupListeners() {
         binding.favorite.setOnClickListener {
             viewModel.updateFavoriteStatus()
+        }
+        binding.toolbarDetail.setNavigationOnClickListener{
+            findNavController().navigateUp()
         }
     }
 }

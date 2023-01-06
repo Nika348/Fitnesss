@@ -17,5 +17,8 @@
     <string name="input_error">Поле пустое</string>
     <string name="network_error">Проверьте соединение с интернетом</string>
     <string name="unknown_error">Неизвестная ошибка</string>
+    <string name="age_error">Введите возраст от 0 до 80</string>
+    <string name="weight_error">Введите значение от 40 до 160</string>
+    <string name="height_error">Введите значение от 130 до 230</string>
 
 </resources>

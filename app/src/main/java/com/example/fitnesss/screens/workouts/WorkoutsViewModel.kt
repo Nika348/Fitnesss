@@ -12,7 +12,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-
 class WorkoutsViewModel @AssistedInject constructor(
     private val repository: LibraryRepository,
     @Assisted("libraryId") private val libraryId: Int
@@ -25,7 +24,7 @@ class WorkoutsViewModel @AssistedInject constructor(
         getWorkouts()
     }
 
-    private fun getWorkouts(){
+    fun getWorkouts(){
         viewModelScope.launch(Dispatchers.IO) {
             _listWorkoutsFlow.tryEmit(repository.getWorkouts(libraryId))
         }

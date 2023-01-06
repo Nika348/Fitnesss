@@ -32,11 +32,18 @@ class FavoriteFragment : Fragment(R.layout.fragment_favorite) {
         _binding = FragmentFavoriteBinding.bind(view)
         binding.rvFavorite.adapter = adapter
         setupObservers()
+        setupListeners()
     }
 
-    private fun setupObservers(){
+    private fun setupListeners() {
+        binding.toolbarFavorites.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
+    }
+
+    private fun setupObservers() {
         lifecycleScope.launchWhenCreated {
-            viewModel.listFavoriteFlow.collect{
+            viewModel.listFavoriteFlow.collect {
                 adapter.submitList(it)
             }
         }
