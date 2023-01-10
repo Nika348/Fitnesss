@@ -1,5 +1,5 @@
 package com.example.fitnesss.utils
 
-class NetworkException: RuntimeException()
+class NetworkException: Exception()
 
-class UnknownException: RuntimeException()
+class UnknownException: Exception()

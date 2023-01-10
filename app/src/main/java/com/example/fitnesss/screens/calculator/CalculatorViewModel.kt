@@ -21,9 +21,9 @@ class CalculatorViewModel @Inject constructor(
     private val repository: LibraryRepository
 ) : ViewModel() {
 
-    private val indexFlow = MutableStateFlow<IndexModel?>(null)
+    val indexFlow = MutableStateFlow<IndexModel?>(null)
 
-    private val idealWeightFlow = MutableStateFlow<IdealWeightModel?>(null)
+    val idealWeightFlow = MutableStateFlow<IdealWeightModel?>(null)
 
     private val _isLoadingFlow = MutableStateFlow(false)
     val isLoadingFlow = _isLoadingFlow.asStateFlow()
@@ -124,8 +124,7 @@ class CalculatorViewModel @Inject constructor(
         } else {
             if (age.isBlank()) {
                 _editAgeStateFlow.tryEmit(EditAgeState.EmptyFieldError(R.string.input_error))
-            }
-            else if (age.toInt() !in 0..80){
+            } else if (age.toInt() !in 0..80) {
                 _editAgeStateFlow.tryEmit(EditAgeState.DiapasonError(R.string.age_error))
             }
         }
@@ -137,8 +136,7 @@ class CalculatorViewModel @Inject constructor(
         } else {
             if (age.isBlank()) {
                 _editWeightStateFlow.tryEmit(EditWeightState.EmptyFieldError(R.string.input_error))
-            }
-            else if (age.toInt() !in 40..160){
+            } else if (age.toInt() !in 40..160) {
                 _editWeightStateFlow.tryEmit(EditWeightState.DiapasonError(R.string.weight_error))
             }
         }
@@ -150,8 +148,7 @@ class CalculatorViewModel @Inject constructor(
         } else {
             if (age.isBlank()) {
                 _editHeightStateFlow.tryEmit(EditHeightState.EmptyFieldError(R.string.input_error))
-            }
-            else if (age.toInt() !in 130..230){
+            } else if (age.toInt() !in 130..230) {
                 _editHeightStateFlow.tryEmit(EditHeightState.DiapasonError(R.string.height_error))
             }
         }
