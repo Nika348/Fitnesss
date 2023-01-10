@@ -26,12 +26,13 @@
         android:id="@+id/rv_workouts"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar_workouts"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_workouts"
         tools:itemCount="3"
-        tools:listitem="@layout/item_workouts"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+        tools:listitem="@layout/item_workouts">
     </androidx.recyclerview.widget.RecyclerView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
