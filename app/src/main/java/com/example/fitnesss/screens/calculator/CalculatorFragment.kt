@@ -126,6 +126,7 @@ class CalculatorFragment : Fragment(R.layout.fragment_calculator) {
                 }
             }
         }
+        // оператор `else` не требуется, потому что мы покрыли все возможные случаи в sealed interface
         lifecycleScope.launchWhenStarted {
             viewModel.editAgeStateFlow.collect { state ->
                 with(binding) {

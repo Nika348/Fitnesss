@@ -9,16 +9,22 @@ import com.example.fitnesss.models.api_model.IndexModel
 import com.example.fitnesss.models.library.LibraryRepository
 import com.example.fitnesss.utils.NetworkException
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.channels.BufferOverflow
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.joinAll
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class CalculatorViewModel @Inject constructor(
-    private val repository: LibraryRepository
+    private val repository: LibraryRepository,
+    private val ioDispatcher: CoroutineDispatcher
 ) : ViewModel() {
 
     val indexFlow = MutableStateFlow<IndexModel?>(null)
@@ -58,10 +64,10 @@ class CalculatorViewModel @Inject constructor(
         )
 
     fun onButtonClick(age: Int, height: Int, weight: Int, gender: String) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(ioDispatcher) {
             _isLoadingFlow.tryEmit(true)
             val indexJob =
-                async {
+                launch {
                     try {
                         indexFlow.tryEmit(repository.getIndexModel(age, height, weight))
                     } catch (e: Exception) {
@@ -76,7 +82,7 @@ class CalculatorViewModel @Inject constructor(
                     }
                 }
             val idealWeightJob =
-                async {
+                launch {
                     try {
                         idealWeightFlow.tryEmit(
                             repository.getIdealWeightModel(
@@ -95,8 +101,7 @@ class CalculatorViewModel @Inject constructor(
                         }
                     }
                 }
-            indexJob.await()
-            idealWeightJob.await()
+            joinAll(indexJob, idealWeightJob)
             _isLoadingFlow.tryEmit(false)
             if (indexFlow.value != null && idealWeightFlow.value != null) {
                 _showContentFlow.tryEmit(true)
@@ -182,7 +187,7 @@ class CalculatorViewModel @Inject constructor(
             fun parse(value: String) = values().find { it.ruGender == value } ?: Male
         }
     }
-
+    // имеет реализации только в том же пакете и модуле
     sealed interface Commands {
         class ShowBottomNetworkError(@StringRes val message: Int) : Commands
 

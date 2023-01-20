@@ -7,6 +7,7 @@ import com.example.fitnesss.models.library.LibraryRepository
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -14,6 +15,7 @@ import kotlinx.coroutines.launch
 
 class DetailViewModel @AssistedInject constructor(
     private val repository: LibraryRepository,
+    private val ioDispatcher: CoroutineDispatcher,
     @Assisted("workoutsId") private val workoutsId: Int
 ): ViewModel() {
 
@@ -28,7 +30,7 @@ class DetailViewModel @AssistedInject constructor(
     }
 
     fun getDetail(){
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(ioDispatcher) {
             val detail = repository.getDetail(workoutsId)
             _isFavoriteFlow.tryEmit(detail.isFavorite)
             _detailFlow.tryEmit(detail)
@@ -37,7 +39,7 @@ class DetailViewModel @AssistedInject constructor(
 
     fun updateFavoriteStatus() {
         _isFavoriteFlow.tryEmit(!_isFavoriteFlow.value)
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(ioDispatcher) {
             repository.updateFavoriteStatus(workoutsId, _isFavoriteFlow.value)
         }
     }
